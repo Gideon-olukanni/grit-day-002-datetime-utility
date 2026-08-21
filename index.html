@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Python datetime Reference — GRIT Day 2</title>
+  <style>
+    :root {
+      --bg:      #0a1020;
+      --surface: #121a2e;
+      --border:  #25304d;
+      --text:    #edf1fa;
+      --muted:   #7c88a6;
+      --green:   #00e676;
+      --gold:    #f5c542;
+      --blue:    #3b82f6;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      padding: 40px 20px 80px;
+    }
+
+    header {
+      max-width: 860px;
+      margin: 0 auto 48px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 24px;
+    }
+
+    .label {
+      font-family: 'Courier New', monospace;
+      font-size: 11px;
+      letter-spacing: 2px;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    h1 { font-size: 28px; font-weight: 800; color: var(--blue); margin-bottom: 6px; }
+    h1 span { color: var(--text); }
+    h2 { font-size: 18px; font-weight: 700; color: var(--gold); margin: 40px 0 16px; }
+    .meta { font-size: 13px; color: var(--muted); }
+
+    main { max-width: 860px; margin: 0 auto; }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 14px;
+      margin-bottom: 48px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px;
+      border-top: 3px solid var(--green);
+    }
+
+    .card-name {
+      font-family: 'Courier New', monospace;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--green);
+      margin-bottom: 6px;
+    }
+
+    .card-desc {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+
+    .method {
+      font-family: 'Courier New', monospace;
+      font-size: 12.5px;
+      color: var(--text);
+      padding: 3px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .method:last-child { border-bottom: none; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+      margin-bottom: 40px;
+    }
+
+    th {
+      text-align: left;
+      padding: 10px 12px;
+      background: var(--surface);
+      color: var(--gold);
+      font-weight: 600;
+      border: 1px solid var(--border);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    td {
+      padding: 10px 12px;
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+
+    td:first-child {
+      font-family: 'Courier New', monospace;
+      color: var(--green);
+      font-weight: 600;
+    }
+
+    tr:nth-child(even) td { background: var(--surface); }
+
+    .pattern-block {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px;
+      margin-bottom: 40px;
+    }
+
+    .pattern-block pre {
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+      color: var(--text);
+      white-space: pre-wrap;
+      line-height: 1.8;
+    }
+
+    footer {
+      max-width: 860px;
+      margin: 56px auto 0;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      font-size: 12px;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="label">GRIT — Gideon Reality Institute of Technology — Day 2 of 1825</div>
+  <h1>Python <span>datetime</span> Reference</h1>
+  <div class="meta">Programming & Software | Year 1: Foundations | Cycle 1 | August 18, 2026</div>
+</header>
+
+<main>
+
+  <div class="cards">
+
+    <div class="card">
+      <div class="card-name">date</div>
+      <div class="card-desc">Calendar date only — no time of day</div>
+      <div class="method">date(year, month, day)</div>
+      <div class="method">date.today()</div>
+      <div class="method">.year / .month / .day</div>
+      <div class="method">.weekday()  →  0=Mon</div>
+      <div class="method">.strftime(fmt)</div>
+      <div class="method">.isoformat()</div>
+      <div class="method">.replace(year=...)</div>
+    </div>
+
+    <div class="card" style="border-top-color: var(--gold);">
+      <div class="card-name" style="color: var(--gold);">time</div>
+      <div class="card-desc">Time of day only — no date</div>
+      <div class="method">time(hour, minute, second)</div>
+      <div class="method">.hour / .minute / .second</div>
+      <div class="method">.isoformat()</div>
+    </div>
+
+    <div class="card" style="border-top-color: var(--blue);">
+      <div class="card-name" style="color: var(--blue);">datetime</div>
+      <div class="card-desc">Date + time combined</div>
+      <div class="method">datetime(y, m, d, H, M, S)</div>
+      <div class="method">datetime.now()</div>
+      <div class="method">datetime.strptime(s, fmt)</div>
+      <div class="method">datetime.combine(date, time)</div>
+      <div class="method">datetime.fromtimestamp(ts)</div>
+      <div class="method">.date()  /  .time()</div>
+      <div class="method">.timestamp()</div>
+      <div class="method">.strftime(fmt)</div>
+    </div>
+
+    <div class="card">
+      <div class="card-name">timedelta</div>
+      <div class="card-desc">A duration — the gap between two moments</div>
+      <div class="method">timedelta(days=n, hours=h)</div>
+      <div class="method">.days</div>
+      <div class="method">.seconds</div>
+      <div class="method">.total_seconds()</div>
+      <div class="method">date + timedelta → date</div>
+      <div class="method">date - date → timedelta</div>
+    </div>
+
+  </div>
+
+  <h2>strftime / strptime — Format Codes</h2>
+  <table>
+    <thead>
+      <tr><th>Code</th><th>Meaning</th><th>Example</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>%Y</td><td>4-digit year</td><td>2026</td></tr>
+      <tr><td>%y</td><td>2-digit year</td><td>26</td></tr>
+      <tr><td>%m</td><td>Month, zero-padded</td><td>08</td></tr>
+      <tr><td>%B</td><td>Full month name</td><td>August</td></tr>
+      <tr><td>%b</td><td>Short month name</td><td>Aug</td></tr>
+      <tr><td>%d</td><td>Day, zero-padded</td><td>17</td></tr>
+      <tr><td>%A</td><td>Full weekday name</td><td>Monday</td></tr>
+      <tr><td>%a</td><td>Short weekday name</td><td>Mon</td></tr>
+      <tr><td>%H</td><td>Hour 24h, zero-padded</td><td>18</td></tr>
+      <tr><td>%I</td><td>Hour 12h, zero-padded</td><td>06</td></tr>
+      <tr><td>%M</td><td>Minute, zero-padded</td><td>00</td></tr>
+      <tr><td>%S</td><td>Second, zero-padded</td><td>00</td></tr>
+      <tr><td>%p</td><td>AM / PM</td><td>PM</td></tr>
+      <tr><td>%j</td><td>Day of year (001–366)</td><td>229</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Date Arithmetic — Patterns</h2>
+  <div class="pattern-block">
+    <pre>
+# Days between two dates
+delta = date2 - date1
+days  = delta.days
+
+# Date N days from now
+future = date.today() + timedelta(days=N)
+
+# Date N days ago
+past = date.today() - timedelta(days=N)
+
+# Day number in the 1825 system
+n = (target_date - START_DATE).days + 1
+
+# Calendar date for day number n
+d = START_DATE + timedelta(days=n - 1)
+
+# How many days until a deadline?
+diff = target - date.today()
+print(f'{diff.days} days remaining')
+
+# Is a deadline in the past?
+is_past = datetime.date.today() > deadline  # True if passed
+    </pre>
+  </div>
+
+</main>
+
+<footer>
+  GRIT — Learn. Build. Teach. | Gideon Reality Institute of Technology | Day 2 of 1825
+</footer>
+
+</body>
+    </html>
